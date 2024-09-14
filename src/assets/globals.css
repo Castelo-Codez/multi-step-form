@@ -1,0 +1,67 @@
+:root {
+    --primary-Marine-blue: hsl(213, 96%, 18%);
+    --primary-Purplish-blue: hsl(243, 100%, 62%);
+    --primary-Pastel-blue: hsl(228, 100%, 84%);
+    --primary-Light-blue: hsl(206, 94%, 87%);
+    --primary-Strawberry-red: hsl(354, 84%, 57%);
+    --neutral-Cool-gray: hsl(231, 11%, 63%);
+    --neutral-Light-gray: hsl(229, 24%, 87%);
+    --neutral-Magnolia: hsl(217, 100%, 97%);
+    --neutral-Alabaster: hsl(231, 100%, 99%);
+    --neutral-White: hsl(0, 0%, 100%);
+    --pad-btn: 14px;
+}
+
+@font-face {
+    font-family: "Ubuntu-medium";
+    src: url("/public/fonts/Ubuntu-Medium.ttf");
+}
+@font-face {
+    font-family: "Ubuntu-bold";
+    src: url("/public/fonts/Ubuntu-Bold.ttf");
+}
+@font-face {
+    font-family: "Ubuntu-regular";
+    src: url("/public/fonts/Ubuntu-Regular.ttf");
+}
+
+.font-regular {
+    font-family: "Ubuntu-regular";
+}
+.font-medium {
+    font-family: "Ubuntu-medium";
+}
+.font-bold {
+    font-family: "Ubuntu-bold";
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Ubuntu-regular";
+    background-color: var(--neutral-Magnolia);
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    @media (min-width: 768px) {
+        align-items: center;
+    }
+}
+
+ul {
+    list-style: none;
+}
