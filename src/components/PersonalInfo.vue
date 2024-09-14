@@ -22,7 +22,7 @@ function $checkForm() {
             $errorMsgOfName.value = "";
             if (newValue === "") {
                 $errorOfName.value = true;
-                $errorMsgOfName.value = "Can't Be Empty";
+                $errorMsgOfName.value = "this field is required";
                 return;
             }
             if (newValue.length < 5) {
@@ -33,7 +33,7 @@ function $checkForm() {
             let $reg = /[\W 0-9]/gi;
             if ($reg.test(newValue)) {
                 $errorOfName.value = true;
-                $errorMsgOfName.value = "Please Enter A Valid Name";
+                $errorMsgOfName.value = "Incorrect Name";
                 return;
             }
         },
@@ -48,12 +48,12 @@ function $checkForm() {
             $errorMsgOfEmail.value = "";
             if (newValue === "") {
                 $errorOfEmail.value = true;
-                $errorMsgOfEmail.value = "Can't Be Empty";
+                $errorMsgOfEmail.value = "this field is required";
                 return;
             }
             if (!isEmail(newValue)) {
                 $errorOfEmail.value = true;
-                $errorMsgOfEmail.value = "Please Enter A Valid Email";
+                $errorMsgOfEmail.value = "Incorrect Email";
                 return;
             }
         },
@@ -68,12 +68,12 @@ function $checkForm() {
             $errorMsgOfNumber.value = "";
             if (newValue === "") {
                 $errorOfPhoneNumber.value = true;
-                $errorMsgOfNumber.value = "Can't Be Empty";
+                $errorMsgOfNumber.value = "this field is required";
                 return;
             }
             if (!/\+\d\s\d{3}\s\d{3}\s\d{3}/gi.test(newValue)) {
                 $errorOfPhoneNumber.value = true;
-                $errorMsgOfNumber.value = "Please Enter A Valid Phone Number";
+                $errorMsgOfNumber.value = "Incorrect Number";
                 return;
             }
         },
@@ -101,44 +101,55 @@ function $checkForm() {
         <p>Please provide your name,email address,and phone number</p>
         <div>
             <form>
-                <label for="name">Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    :has-error="$errorOfName"
-                    v-model="$name"
-                    placeholder="e.g. Stephan King"
-                />
-                <span
-                    v-if="$errorOfName"
-                    aria-label="name error"
-                    v-text="$errorMsgOfName"
-                ></span>
-                <label for="emailAdress">Email</label>
-                <input
-                    type="text"
-                    id="emailAdress"
-                    name="email"
-                    v-model="$email"
-                    :has-error="$errorOfEmail"
-                    placeholder="e.g. StephanKing@lorem.com"
-                />
-                <span aria-label="email error" v-if="$errorOfEmail">{{
-                    $errorMsgOfEmail
-                }}</span>
+                <div aria-label="Name Container" class="input-container">
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        :has-error="$errorOfName"
+                        v-model="$name"
+                        placeholder="e.g. Stephan King"
+                    />
+                    <span
+                        v-if="$errorOfName"
+                        aria-label="name error"
+                        v-text="$errorMsgOfName"
+                    ></span>
+                </div>
+                <div aria-label="Email Container" class="input-container">
+                    <label for="emailAdress">Email</label>
+                    <input
+                        type="text"
+                        id="emailAdress"
+                        name="email"
+                        v-model="$email"
+                        :has-error="$errorOfEmail"
+                        placeholder="e.g. StephanKing@lorem.com"
+                    />
+                    <span aria-label="email error" v-if="$errorOfEmail">{{
+                        $errorMsgOfEmail
+                    }}</span>
+                </div>
 
-                <label for="phonenum">phone number</label>
-                <input
-                    type="text"
-                    id="phonenum"
-                    v-model="$phoneNumber"
-                    :has-error="$errorOfPhoneNumber"
-                    placeholder="e.g.+1 234 567 890"
-                />
-                <span aria-label="number error" v-if="$errorOfPhoneNumber">{{
-                    $errorMsgOfNumber
-                }}</span>
+                <div
+                    aria-label="phone number container"
+                    class="input-container"
+                >
+                    <label for="phonenum">phone number</label>
+                    <input
+                        type="text"
+                        id="phonenum"
+                        v-model="$phoneNumber"
+                        :has-error="$errorOfPhoneNumber"
+                        placeholder="e.g.+1 234 567 890"
+                    />
+                    <span
+                        aria-label="number error"
+                        v-if="$errorOfPhoneNumber"
+                        >{{ $errorMsgOfNumber }}</span
+                    >
+                </div>
             </form>
         </div>
     </div>
@@ -152,21 +163,35 @@ form {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    label {
-        text-transform: capitalize;
-    }
-    input {
-        padding: 10px;
-
-        border: 1px solid var(--neutral-Light-gray);
-        &:focus {
-            outline: none;
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+        position: relative;
+        label {
+            text-transform: capitalize;
         }
-        &[has-error="true"] {
-            border: 1px solid var(--primary-Strawberry-red);
-        }
-        & + span {
-            color: var(--primary-Strawberry-red);
+        input {
+            padding: 12px;
+            border: 1px solid var(--neutral-Light-gray);
+            border-radius: 8px;
+            &:focus {
+                border: 1px solid var(--primary-Purplish-blue);
+                outline: 0px;
+            }
+            &[has-error="true"] {
+                border: 0;
+                border: 1px solid var(--primary-Strawberry-red);
+            }
+            & + span {
+                color: var(--primary-Strawberry-red);
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 0.74rem;
+                font-weight: 600;
+                text-transform: capitalize;
+            }
         }
     }
 }

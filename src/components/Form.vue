@@ -168,7 +168,7 @@ import {$reactiveState} from "../../store/store";
         width: 100%;
         bottom: 0;
         position: static;
-        padding: 30px 60px;
+        padding: 30px;
     }
     .controllers {
         position: absolute;
