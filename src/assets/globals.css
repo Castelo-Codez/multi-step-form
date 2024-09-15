@@ -14,15 +14,15 @@
 
 @font-face {
     font-family: "Ubuntu-medium";
-    src: url("/public/fonts/Ubuntu-Medium.ttf");
+    src: url("/fonts/Ubuntu-Medium.ttf");
 }
 @font-face {
     font-family: "Ubuntu-bold";
-    src: url("/public/fonts/Ubuntu-Bold.ttf");
+    src: url("/fonts/Ubuntu-Bold.ttf");
 }
 @font-face {
     font-family: "Ubuntu-regular";
-    src: url("/public/fonts/Ubuntu-Regular.ttf");
+    src: url("/fonts/Ubuntu-Regular.ttf");
 }
 
 .font-regular {

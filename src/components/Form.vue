@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import PersonalInfoSetp from "./PersonalInfo.vue";
+import SelectPlan from "./SelectPlan.vue";
 import {$reactiveState} from "../../store/store";
 </script>
 <template>
@@ -62,6 +63,7 @@ import {$reactiveState} from "../../store/store";
         </div>
         <div aria-label="steps" class="steps-wrapper">
             <PersonalInfoSetp v-if="$reactiveState.personalInfo" />
+            <SelectPlan v-if="$reactiveState.selectAplan" />
         </div>
     </div>
 </template>
@@ -72,7 +74,7 @@ import {$reactiveState} from "../../store/store";
     width: 800px;
     @media (min-width: 768px) {
         display: grid;
-        grid-template-columns:250px 1fr;
+        grid-template-columns: 250px 1fr;
         background-color: var(--neutral-White);
         padding: 20px;
     }
@@ -145,7 +147,7 @@ import {$reactiveState} from "../../store/store";
                             & + span {
                                 text-transform: uppercase;
                                 font-size: 16px;
-                                font-weight: 600;
+                                font-weight: 500;
                                 color: var(--neutral-Alabaster);
                                 letter-spacing: 1px;
                             }

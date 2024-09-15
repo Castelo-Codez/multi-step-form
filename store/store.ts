@@ -1,7 +1,6 @@
 import {reactive, ref, watch} from "vue";
 
 const $current = ref(0);
-
 const arrayOfSteps = ref([
     "personalInfo",
     "selectAplan",

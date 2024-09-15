@@ -4,13 +4,25 @@ import GoBack from "./GoBack.vue";
 import {$current, $selectedFeatures} from "../../store/store";
 import {ref, watch} from "vue";
 import isEmail from "validator/lib/isEmail";
-const $name = ref("");
+let $name = ref(""),
+    $email = ref(""),
+    $phoneNumber = ref("");
+if (
+    $selectedFeatures.name &&
+    $selectedFeatures.email &&
+    $selectedFeatures.phoneNmbr
+) {
+    $name = ref($selectedFeatures.name);
+    $email = ref($selectedFeatures.email);
+    $phoneNumber = ref($selectedFeatures.phoneNmbr);
+}
+
 const $errorOfName = ref(false);
 const $errorMsgOfName = ref("");
-const $email = ref("");
+
 const $errorOfEmail = ref(false);
 const $errorMsgOfEmail = ref("");
-const $phoneNumber = ref("");
+
 const $errorOfPhoneNumber = ref(false);
 const $errorMsgOfNumber = ref("");
 const $errors = ref([$errorOfName, $errorOfEmail, $errorOfPhoneNumber]);
@@ -69,6 +81,11 @@ function $checkForm() {
             if (newValue === "") {
                 $errorOfPhoneNumber.value = true;
                 $errorMsgOfNumber.value = "this field is required";
+                return;
+            }
+            if (newValue.length !== 14) {
+                $errorOfPhoneNumber.value = true;
+                $errorMsgOfNumber.value = "Incorrect Number";
                 return;
             }
             if (!/\+\d\s\d{3}\s\d{3}\s\d{3}/gi.test(newValue)) {
