@@ -160,7 +160,7 @@ import {$reactiveState} from "../../store/store";
 }
 .steps-wrapper {
     background-color: var(--neutral-White);
-    min-height: 300px;
+    min-height: 530px;
     width: 85%;
     margin: auto;
     border-radius: 5px;
@@ -169,7 +169,7 @@ import {$reactiveState} from "../../store/store";
     @media (min-width: 768px) {
         width: 100%;
         bottom: 0;
-        position: static;
+        position: relative;
         padding: 30px;
     }
     .controllers {
@@ -181,7 +181,9 @@ import {$reactiveState} from "../../store/store";
         display: flex;
         align-items: center;
         @media (min-width: 768px) {
-            position: static;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
     .step-controllers {

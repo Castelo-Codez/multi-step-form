@@ -1,5 +1,5 @@
 import {reactive, ref, watch} from "vue";
-
+const $planType = ref(false);
 const $current = ref(0);
 const arrayOfSteps = ref([
     "personalInfo",
@@ -21,12 +21,14 @@ interface SelectedFeatures {
     name: string | null;
     email: string | null;
     phoneNmbr: string | null;
+    selectedPlan: string | null;
 }
 
 let $selectedFeatures: SelectedFeatures = reactive({
     name: null,
     email: null,
     phoneNmbr: null,
+    selectedPlan: "acrade",
 });
 watch(
     () => $current.value,
@@ -52,4 +54,4 @@ watch($selectedFeatures, (newValue) => {
     window.localStorage.setItem("selected-features", JSON.stringify(newValue));
 });
 
-export {$reactiveState, $current, $selectedFeatures};
+export {$reactiveState, $current, $selectedFeatures, $planType};
