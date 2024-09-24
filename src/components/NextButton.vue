@@ -1,9 +1,15 @@
 <script lang="ts" setup>
+interface Props {
+    content?: string;
+}
+
+const $props = defineProps<Props>();
 </script>
 <template>
-    <button aria-label="Next step" role="button">
-        Next Step
+    <button aria-label="Next step" role="button" v-if="$props.content">
+        Confirm
     </button>
+    <button aria-label="Next step" role="button" v-else>Next Step</button>
 </template>
 <style scoped>
 button {

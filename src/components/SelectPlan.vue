@@ -3,6 +3,8 @@ import NextButton from "./NextButton.vue";
 import GoBack from "./GoBack.vue";
 import {ref, watch} from "vue";
 import {$current, $planType, $selectedFeatures} from "../../store/store";
+
+
 const Plan = ref();
 function $nextStep() {
     $current.value++;
@@ -23,8 +25,19 @@ watch(Plan, (newVal) => {
                     type="radio"
                     id="acrade"
                     v-model="Plan"
-                    checked
-                    value="acrade"
+                    :value="JSON.stringify({title: 'acrade', price: '$9/mo'})"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'acrade'"
+                    v-if="!$planType"
+                    name="plan"
+                    aria-label="acrade plan"
+                />
+                <input
+                    type="radio"
+                    id="acrade"
+                    v-model="Plan"
+                    :value="JSON.stringify({title: 'acrade', price: '$90/yr'})"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'acrade'"
+                    v-if="$planType"
                     name="plan"
                     aria-label="acrade plan"
                 />
@@ -74,8 +87,24 @@ watch(Plan, (newVal) => {
                     type="radio"
                     id="advanced"
                     v-model="Plan"
+                    v-if="!$planType"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'advanced'"
                     name="plan"
-                    value="advanced"
+                    :value="
+                        JSON.stringify({title: 'advanced', price: '$12/mo'})
+                    "
+                    aria-label="advanced plan"
+                />
+                <input
+                    type="radio"
+                    id="advanced"
+                    v-model="Plan"
+                    v-if="$planType"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'advanced'"
+                    name="plan"
+                    :value="
+                        JSON.stringify({title: 'advanced', price: '$120/yr'})
+                    "
                     aria-label="advanced plan"
                 />
                 <label for="advanced">
@@ -124,8 +153,20 @@ watch(Plan, (newVal) => {
                     type="radio"
                     id="pro"
                     v-model="Plan"
+                    v-if="!$planType"
+                    :value="JSON.stringify({title: 'pro', price: '$15/mo'})"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'pro'"
                     name="plan"
-                    value="pro"
+                    aria-label="pro plan"
+                />
+                <input
+                    type="radio"
+                    id="pro"
+                    v-model="Plan"
+                    v-if="$planType"
+                    name="plan"
+                    :value="JSON.stringify({title: 'pro', price: '$150/yr'})"
+                    :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'pro'"
                     aria-label="pro plan"
                 />
                 <label for="pro">
@@ -202,7 +243,7 @@ watch(Plan, (newVal) => {
         input {
             display: none;
             &:checked + label {
-                background-color: var(--neutral-Magnolia);
+                background-color: var(--neutral-Alabaster);
                 border: 1px solid var(--primary-Purplish-blue);
             }
         }
@@ -211,7 +252,6 @@ watch(Plan, (newVal) => {
             display: block;
             cursor: pointer;
             border: 1px solid var(--neutral-Light-gray);
-
             border-radius: 10px;
             span {
                 display: block;
@@ -230,7 +270,8 @@ watch(Plan, (newVal) => {
                             & + span {
                                 color: var(--neutral-Cool-gray);
                                 & + span {
-                                    color: var(--neutral-Cool-gray);
+                                    color: var(--primary-Marine-blue);
+                                    font-weight: 800;
                                 }
                             }
                         }

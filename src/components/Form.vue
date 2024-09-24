@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import PersonalInfoSetp from "./PersonalInfo.vue";
 import SelectPlan from "./SelectPlan.vue";
+import PickAddOns from "./PickAddOns.vue";
 import {$reactiveState} from "../../store/store";
 </script>
 <template>
@@ -64,6 +65,7 @@ import {$reactiveState} from "../../store/store";
         <div aria-label="steps" class="steps-wrapper">
             <PersonalInfoSetp v-if="$reactiveState.personalInfo" />
             <SelectPlan v-if="$reactiveState.selectAplan" />
+            <PickAddOns v-if="$reactiveState.pickAdd" />
         </div>
     </div>
 </template>
@@ -160,7 +162,7 @@ import {$reactiveState} from "../../store/store";
 }
 .steps-wrapper {
     background-color: var(--neutral-White);
-    min-height: 530px;
+    min-height: 600px;
     width: 85%;
     margin: auto;
     border-radius: 5px;

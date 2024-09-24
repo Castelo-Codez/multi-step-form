@@ -22,13 +22,17 @@ interface SelectedFeatures {
     email: string | null;
     phoneNmbr: string | null;
     selectedPlan: string | null;
+    additionalFeatures: any[] | null;
+    $totalPrice: number | null;
 }
 
 let $selectedFeatures: SelectedFeatures = reactive({
     name: null,
     email: null,
     phoneNmbr: null,
-    selectedPlan: "acrade",
+    selectedPlan: JSON.stringify({title: "acrade", price: "$9/mo"}),
+    additionalFeatures: [],
+    $totalPrice: 0,
 });
 watch(
     () => $current.value,
@@ -50,6 +54,31 @@ watch(
     }
 );
 
+watch($planType, (newValue) => {
+    if (newValue) {
+        let $yearlyPlanType = [
+            {title: "acrade", price: "$90/yr"},
+            {title: "advanced", price: "$120/yr"},
+            {title: "pro", price: "$150/yr"},
+        ].find(
+            (el) =>
+                JSON.parse($selectedFeatures.selectedPlan as string).title ===
+                el.title
+        );
+        $selectedFeatures.selectedPlan = JSON.stringify($yearlyPlanType);
+        return;
+    }
+    let $monthlyPlanType = [
+        {title: "acrade", price: "$9/mo"},
+        {title: "advanced", price: "$12/mo"},
+        {title: "pro", price: "$15/mo"},
+    ].find(
+        (el) =>
+            JSON.parse($selectedFeatures.selectedPlan as string).title ===
+            el.title
+    );
+    $selectedFeatures.selectedPlan = JSON.stringify($monthlyPlanType);
+});
 watch($selectedFeatures, (newValue) => {
     window.localStorage.setItem("selected-features", JSON.stringify(newValue));
 });
