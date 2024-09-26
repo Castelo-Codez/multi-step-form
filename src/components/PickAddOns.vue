@@ -1,13 +1,7 @@
 <script lang="ts" setup>
 import NextButton from "./NextButton.vue";
 import GoBack from "./GoBack.vue";
-import {ref, watch} from "vue";
-import {
-    $current,
-    $planType,
-    $reactiveState,
-    $selectedFeatures,
-} from "../../store/store";
+import {$current, $planType, $selectedFeatures} from "../../store/store";
 
 function $nextStep() {}
 </script>
@@ -24,11 +18,17 @@ function $nextStep() {}
                 style="display: none"
                 type="checkbox"
                 v-model="$selectedFeatures.additionalFeatures"
-                value="online service"
+                :value="
+                    $planType
+                        ? JSON.stringify({title: 'online service', price: 10})
+                        : JSON.stringify({title: 'online service', price: 1})
+                "
                 id="online-service"
                 role="checkbox"
+                checked
                 aria-label="add online service feature"
             />
+
             <label for="online-service">
                 <div>
                     <div aria-hidden="true">
@@ -62,11 +62,16 @@ function $nextStep() {}
                 style="display: none"
                 type="checkbox"
                 v-model="$selectedFeatures.additionalFeatures"
-                value="larger storage"
+                :value="
+                    $planType
+                        ? JSON.stringify({title: 'larger storage', price: 20})
+                        : JSON.stringify({title: 'larger storage', price: 2})
+                "
                 role="checkbox"
                 id="larger-storage"
                 aria-label="add larger storage feature"
             />
+
             <label for="larger-storage">
                 <div>
                     <div aria-hidden="true">
@@ -99,11 +104,22 @@ function $nextStep() {}
                 style="display: none"
                 type="checkbox"
                 v-model="$selectedFeatures.additionalFeatures"
-                value="customizable profile"
+                :value="
+                    $planType
+                        ? JSON.stringify({
+                              title: 'customizable profile',
+                              price: 20,
+                          })
+                        : JSON.stringify({
+                              title: 'customizable profile',
+                              price: 2,
+                          })
+                "
                 id="customizable-profile"
                 role="checkbox"
                 aria-label="add customizable profile feature"
             />
+
             <label for="customizable-profile">
                 <div>
                     <div aria-hidden="true">
@@ -134,7 +150,6 @@ function $nextStep() {}
             </label>
         </div>
     </div>
-
     <div class="controllers" aria-label="controllers buttons">
         <GoBack v-if="$current > 0" />
         <NextButton @click="$nextStep" />

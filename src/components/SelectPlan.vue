@@ -25,7 +25,7 @@ watch(Plan, (newVal) => {
                     type="radio"
                     id="acrade"
                     v-model="Plan"
-                    :value="JSON.stringify({title: 'acrade', price: '$9/mo'})"
+                    :value="JSON.stringify({title: 'acrade', price: 9})"
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'acrade'"
                     v-if="!$planType"
                     name="plan"
@@ -35,7 +35,7 @@ watch(Plan, (newVal) => {
                     type="radio"
                     id="acrade"
                     v-model="Plan"
-                    :value="JSON.stringify({title: 'acrade', price: '$90/yr'})"
+                    :value="JSON.stringify({title: 'acrade', price: 90})"
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'acrade'"
                     v-if="$planType"
                     name="plan"
@@ -91,7 +91,7 @@ watch(Plan, (newVal) => {
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'advanced'"
                     name="plan"
                     :value="
-                        JSON.stringify({title: 'advanced', price: '$12/mo'})
+                        JSON.stringify({title: 'advanced', price: 12})
                     "
                     aria-label="advanced plan"
                 />
@@ -103,7 +103,7 @@ watch(Plan, (newVal) => {
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'advanced'"
                     name="plan"
                     :value="
-                        JSON.stringify({title: 'advanced', price: '$120/yr'})
+                        JSON.stringify({title: 'advanced', price: 120})
                     "
                     aria-label="advanced plan"
                 />
@@ -154,7 +154,7 @@ watch(Plan, (newVal) => {
                     id="pro"
                     v-model="Plan"
                     v-if="!$planType"
-                    :value="JSON.stringify({title: 'pro', price: '$15/mo'})"
+                    :value="JSON.stringify({title: 'pro', price: 15})"
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'pro'"
                     name="plan"
                     aria-label="pro plan"
@@ -165,7 +165,7 @@ watch(Plan, (newVal) => {
                     v-model="Plan"
                     v-if="$planType"
                     name="plan"
-                    :value="JSON.stringify({title: 'pro', price: '$150/yr'})"
+                    :value="JSON.stringify({title: 'pro', price: 150})"
                     :checked="JSON.parse($selectedFeatures.selectedPlan as string).title === 'pro'"
                     aria-label="pro plan"
                 />
