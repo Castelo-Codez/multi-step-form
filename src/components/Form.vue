@@ -2,6 +2,8 @@
 import PersonalInfoSetp from "./PersonalInfo.vue";
 import SelectPlan from "./SelectPlan.vue";
 import PickAddOns from "./PickAddOns.vue";
+import FinishingUp from "./FinishingUp.vue";
+import LastSection from "./LastSection.vue";
 import {$reactiveState} from "../../store/store";
 </script>
 <template>
@@ -66,6 +68,8 @@ import {$reactiveState} from "../../store/store";
             <PersonalInfoSetp v-if="$reactiveState.personalInfo" />
             <SelectPlan v-if="$reactiveState.selectAplan" />
             <PickAddOns v-if="$reactiveState.pickAdd" />
+            <FinishingUp v-if="$reactiveState.finishingUp" />
+            <LastSection v-if="$reactiveState.last" />
         </div>
     </div>
 </template>

@@ -23,7 +23,7 @@ interface SelectedFeatures {
     phoneNmbr: string | null;
     selectedPlan: string | null;
     additionalFeatures: any[] | null;
-    $totalPrice: number | null;
+   
 }
 
 let $selectedFeatures: SelectedFeatures = reactive({
@@ -32,7 +32,6 @@ let $selectedFeatures: SelectedFeatures = reactive({
     phoneNmbr: null,
     selectedPlan: JSON.stringify({title: "acrade", price: 9}),
     additionalFeatures: [],
-    $totalPrice: 0,
 });
 watch(
     () => $current.value,

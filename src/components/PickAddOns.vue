@@ -3,7 +3,9 @@ import NextButton from "./NextButton.vue";
 import GoBack from "./GoBack.vue";
 import {$current, $planType, $selectedFeatures} from "../../store/store";
 
-function $nextStep() {}
+function $nextStep() {
+    $current.value++;
+}
 </script>
 <template>
     <div aria-label="step - select plan" class="step-controllers">
